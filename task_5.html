@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SHRI 2021 hackathon</title>
+</head>
+<body>
+    <h1>Задача 5: обход дерева в ширину</h1>
+    <script>
+      const treeTraversal = (node) => {
+        const { val, children } = node;
+        console.log(val);
+        let prevLevelsCount = 0;
+
+        let levels = [children];
+        while (prevLevelsCount !== levels.length) {
+          prevLevelsCount = levels.length;
+
+          levels.forEach((level) => {
+            level.forEach((child) => {
+              if (child.children && !child.visited) {
+                levels.push(child.children);
+                child.visited = true;
+              }
+            });
+          });
+        }
+
+        levels.forEach((level) => {
+          level.forEach((child) => console.log(child.val));
+        })
+      };
+
+
+
+      const tree = {
+        val: 1,
+        children: [
+          {
+            val: 2,
+            children: [
+              {
+                val: 4,
+                children: [{ val: 9, children: [{ val: 10 }] }]
+              },
+              {
+                val: 5,
+              },
+              {
+                val: 6,
+              }
+            ]
+          },
+          {
+            val: 3,
+            children: [
+              {
+                val: 7,
+              },
+              {
+                val: 8,
+              }
+            ]
+          },
+          {
+            val: 11
+          }
+        ]
+      };
+
+      console.log(treeTraversal(tree));
+    </script>
+</body>
+</html>
