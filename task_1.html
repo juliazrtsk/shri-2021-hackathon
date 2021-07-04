@@ -5,9 +5,33 @@
     <title>SHRI 2021 hackathon</title>
 </head>
 <body>
-    <h1>Task 1</h1>
+    <h1>Задача 1: сортировка пузырьком</h1>
     <script>
+      const ascComparator = (a, b) => a < b;
+      const descComparator = (a, b) => a > b;
 
+      const bubbleSort = (array, asc = true) => {
+        const compare = asc ? ascComparator : descComparator;
+
+        for (let i = 0; i < array.length; i++) {
+          for (let j = 0; j < array.length; j++) {
+            if (compare(array[i], array[j])) {
+              let temp = array[j];
+              array[j] = array[i];
+              array[i] = temp;
+            }
+          }
+        }
+        return array;
+      }
+
+      const testArr1 = [5, 4, 3, 2, 1];
+      const testArr2 = [1, 2, 3, 4, 5];
+      const testArr3 = [10, 5, 17, 8, 3];
+      console.log(`Array: ${testArr1}; Sorted asc: ${bubbleSort(testArr1)}`);
+      console.log(`Array: ${testArr2}; Sorted desc: ${bubbleSort(testArr2, false)}`);
+      console.log(`Array: ${testArr3}; Sorted asc: ${bubbleSort(testArr3)}`);
+      console.log(`Array: ${testArr3}; Sorted desc: ${bubbleSort(testArr3, false)}`);
     </script>
 </body>
 </html>
