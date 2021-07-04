@@ -20,8 +20,8 @@
             level.forEach((child) => {
               if (child.children && !child.visited) {
                 levels.push(child.children);
-                child.visited = true;
               }
+              child.visited = true;
             });
           });
         }
