@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SHRI 2021 hackathon</title>
+</head>
+<body>
+    <h1>Задача 2: сортировка выбором</h1>
+    <script>
+
+      const selectionSort = (array) => {
+        let unsorted = array.length;
+
+        while (unsorted > 0) {
+          let maxIndex = 0;
+          for (let j = 0; j < unsorted - 1; j++) {
+            if (array[maxIndex] < array[j]) {
+              maxIndex = j;
+            }
+          }
+          if (array[maxIndex] > array[unsorted - 1]) {
+            const temp = array[unsorted - 1];
+            array[unsorted - 1] = array[maxIndex];
+            array[maxIndex] = temp;
+          }
+
+          unsorted--;
+        }
+        return array;
+      };
+
+      const testArr1 = [5, 4, 3, 2, 1];
+      const testArr2 = [1, 2, 3, 4, 5];
+      const testArr3 = [10, 5, 17, 8, 3];
+      console.log(`Array: ${testArr1}; Sorted: ${selectionSort(testArr1)}`);
+      console.log(`Array: ${testArr2}; Sorted: ${selectionSort(testArr2)}`);
+      console.log(`Array: ${testArr3}; Sorted: ${selectionSort(testArr3)}`);
+    </script>
+</body>
+</html>
