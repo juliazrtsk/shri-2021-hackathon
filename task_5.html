@@ -15,15 +15,17 @@
         let levels = [children];
         while (prevLevelsCount !== levels.length) {
           prevLevelsCount = levels.length;
+          const lastLevel = levels[prevLevelsCount - 1];
+          const newLevel = lastLevel.reduce((acc, child) => {
+            if (child.children) {
+              return [...acc, ...child.children];
+            }
+            return acc;
+          }, []);
 
-          levels.forEach((level) => {
-            level.forEach((child) => {
-              if (child.children && !child.visited) {
-                levels.push(child.children);
-              }
-              child.visited = true;
-            });
-          });
+          if (newLevel.length !== 0) {
+            levels.push(newLevel);
+          }
         }
 
         levels.forEach((level) => {
