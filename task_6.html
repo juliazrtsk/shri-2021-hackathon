@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SHRI 2021 hackathon</title>
+</head>
+<body>
+    <h1>Задача 6:</h1>
+    <script>
+        const pair = {
+          '{': '}',
+          '}': '{',
+          '(': ')',
+          ')': '(',
+          '[': ']',
+          ']': '['
+        };
+
+        const closingBrace = (char) =>
+          char === '}' || char === ']' || char === ')';
+        const openingBrace = (char) =>
+          char === '{' || char === '[' || char === '(';
+
+        const isBrace = (char) => closingBrace(char) || openingBrace(char);
+
+        const balancedBraces = (string) => {
+          const stack = [];
+          const str = [...string];
+          const isCorrect = str.reduce((acc, char) => {
+            if (isBrace(char)) {
+              if (openingBrace(char)) {
+                stack.push(char);
+              } else {
+                const prevChar = stack.pop();
+                const pairChar = pair[prevChar];
+
+                return pairChar === char;
+              }
+            }
+          }, true);
+          return stack.length === 0 && isCorrect;
+        };
+
+        const testStr1 = '{([qwerty])}';
+        const testStr2 = '{[}]';
+        const testStr3 = '(){}[]';
+        const testStr4 = ')(';
+        console.log(`${testStr1}: ${balancedBraces(testStr1)}`);
+        console.log(`${testStr2}: ${balancedBraces(testStr2)}`);
+        console.log(`${testStr3}: ${balancedBraces(testStr3)}`);
+        console.log(`${testStr4}: ${balancedBraces(testStr4)}`);
+    </script>
+</body>
+</html>
