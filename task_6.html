@@ -33,10 +33,10 @@
               } else {
                 const prevChar = stack.pop();
                 const pairChar = pair[prevChar];
-
-                return pairChar === char;
+                acc = acc && pairChar === char;
               }
             }
+            return acc;
           }, true);
           return stack.length === 0 && isCorrect;
         };
@@ -45,10 +45,16 @@
         const testStr2 = '{[}]';
         const testStr3 = '(){}[]';
         const testStr4 = ')(';
+        const testStr5 = ')))))))';
+        const testStr6 = '(((((((';
+        const testStr7 = '[(]){}';
         console.log(`${testStr1}: ${balancedBraces(testStr1)}`);
         console.log(`${testStr2}: ${balancedBraces(testStr2)}`);
         console.log(`${testStr3}: ${balancedBraces(testStr3)}`);
         console.log(`${testStr4}: ${balancedBraces(testStr4)}`);
+        console.log(`${testStr5}: ${balancedBraces(testStr5)}`);
+        console.log(`${testStr6}: ${balancedBraces(testStr6)}`);
+        console.log(`${testStr7}: ${balancedBraces(testStr7)}`);
     </script>
 </body>
 </html>
